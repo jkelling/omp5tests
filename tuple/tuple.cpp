@@ -12,7 +12,7 @@ int main()
 		, (unsigned long long int)(std::get<0>(argsD)),(unsigned long long int)(std::get<1>(argsD)),(unsigned long long int)(std::get<2>(argsD))
 		, int(std::get<3>(argsD)));
 
-#pragma omp target map(from:argsD)
+#pragma omp target map(to:argsD)
 	{
 #pragma omp teams num_teams(1) thread_limit(4)
 		{

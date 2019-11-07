@@ -3,7 +3,7 @@ Compile target `tuple`
 # compiler results
 |compiler|CMAKE_CXX_FLAGS|compile status|target|run status|
 |---|---|---|---|---|
-|LLVM 9.0.0 (CLAIX)|-fopenmp -fopenmp=libomp -fopenmp-targets=x86_64-pc-linux-gnu|omp warning about mapping tuple|x86|data not/wrongly mapped|
+|LLVM 9.0.0 (CLAIX)|-fopenmp -fopenmp=libomp -fopenmp-targets=x86_64-pc-linux-gnu|omp warning about mapping tuple|x86|ok|
 |GCC 9.2 (CLAIX)|-fopenmp|lto error (1)|no GPU|--|
 |GCC 9.2 (CLAIX)|-fopenmp -fno-lto|ok|no GPU|ok |
 |GCC 9.2 (CLAIX)|-fopenmp -fno-lto -foffload=nvptx-none|ok|nvptx|ok,not using GPU|
