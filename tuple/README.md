@@ -7,6 +7,8 @@ Compile target `tuple`
 |GCC 9.2 (CLAIX)|-fopenmp|lto error (1)|no GPU|--|
 |GCC 9.2 (CLAIX)|-fopenmp -fno-lto|ok|no GPU|ok |
 |GCC 9.2 (CLAIX)|-fopenmp -fno-lto -foffload=nvptx-none|ok|nvptx|ok,not using GPU|
+|AOMP 0.7-4| -fopenmp=libomp -Xopenmp-target=x86_64-pc-linux-gnu -fopenmp-targets=x86_64 |omp warning about mapping tuple|x86|ok|
+|AOMP 0.7-4|-fopenmp=libomp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx900|omp warning about mapping tuple|amdhsa|relocation error (2)|
 
 ## errors
 
@@ -20,3 +22,6 @@ Compile target `tuple`
    lto-wrapper: fatal error:
    /usr/local_rwth/sw/gcc/9.2.0/libexec/gcc/x86_64-pc-linux-gnu/9.2.0//accel/nvptx-none/mkoffload
    returned 1 exit status
+2. relocation error: ./tuple/tuple: symbol
+   __tgt_register_requires version VERS1.0 not defined in file libomptarget.so with
+   link time reference
