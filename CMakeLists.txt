@@ -12,3 +12,4 @@ if(OpenMP_FOUND)
 endif(OpenMP_FOUND)
 
 add_subdirectory(amdMatmul)
+add_subdirectory(tuple)
