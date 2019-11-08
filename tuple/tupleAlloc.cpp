@@ -7,9 +7,9 @@ int main()
 {
 	//tuple<unsigned int *, unsigned int *, unsigned int *, unsigned long>
 	int A[] = {10,2,3,4};
-        int *tA = (int *) omp_target_alloc(4, 0);
-        int *tB = (int *) omp_target_alloc(4, 0);
-        int *tC = (int *) omp_target_alloc(4, 0);
+        int *tA = (int *) omp_target_alloc(4*sizeof(int), 0);
+        int *tB = (int *) omp_target_alloc(4*sizeof(int), 0);
+        int *tC = (int *) omp_target_alloc(4*sizeof(int), 0);
 
 	omp_target_memcpy(tA, A, 4*sizeof(int), 0, 0, 0, omp_get_initial_device());
 

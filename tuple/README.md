@@ -27,4 +27,4 @@ Compile target `tuple`
 |compiler|CMAKE_CXX_FLAGS|compile status|target|run status|
 |---|---|---|---|---|
 |LLVM 9.0.0 (CLAIX)|-fopenmp -fopenmp=libomp -fopenmp-targets=x86_64-pc-linux-gnu|omp warning about mapping tuple|x86|ok|
-|LLVM 9.0.0 (CLAIX)| -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda|omp warning about mapping tuple|nvptx|no copy|
+|LLVM 9.0.0 (CLAIX)| -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda|omp warning about mapping tuple|nvptx|ok|
