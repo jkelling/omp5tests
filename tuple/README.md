@@ -22,3 +22,9 @@ Compile target `tuple`
    lto-wrapper: fatal error:
    /usr/local_rwth/sw/gcc/9.2.0/libexec/gcc/x86_64-pc-linux-gnu/9.2.0//accel/nvptx-none/mkoffload
    returned 1 exit status
+
+# compiler tupleAlloc
+|compiler|CMAKE_CXX_FLAGS|compile status|target|run status|
+|---|---|---|---|---|
+|LLVM 9.0.0 (CLAIX)|-fopenmp -fopenmp=libomp -fopenmp-targets=x86_64-pc-linux-gnu|omp warning about mapping tuple|x86|ok|
+|LLVM 9.0.0 (CLAIX)| -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda|omp warning about mapping tuple|nvptx|no copy|
