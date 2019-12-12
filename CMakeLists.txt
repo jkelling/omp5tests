@@ -13,3 +13,4 @@ endif(OpenMP_FOUND)
 
 add_subdirectory(amdMatmul)
 add_subdirectory(tuple)
+add_subdirectory(kernelStruct)

@@ -1,0 +1,2 @@
+add_executable(kernelStruct kernelStruct.cpp)
+target_link_libraries(kernelStruct)
