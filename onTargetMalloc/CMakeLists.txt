@@ -1,0 +1,2 @@
+add_executable(onTargetMalloc onTargetMalloc.cpp)
+target_link_libraries(onTargetMalloc)
