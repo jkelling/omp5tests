@@ -386,7 +386,7 @@ namespace meta
 template<int A>
 struct F
 {
-	void operator() (int a) const {}
+	void operator() (int& s, int a) const {s = 23;}
 };
 
 constexpr int TEAMS = 1;
@@ -404,7 +404,9 @@ int main()
 			{
 				#pragma omp parallel
 				{
-					meta::apply([f](int a){f(a);}, std::make_tuple(2));
+					int s = 0;
+					meta::apply([f](int& s, int a){f(s, a);}, std::make_tuple(std::ref(s), 2));
+					// printf("side effect %d\n", s);
 				}
 			}
 		}
