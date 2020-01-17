@@ -435,7 +435,7 @@ int main(int argc, char *argv[])
 	Vec<std::integral_constant< unsigned int, 1>,  unsigned int> t(23u);
 // #pragma omp target enter data map(to: t)
 
-#pragma omp teams
+#pragma omp target teams
 	{
 		#pragma omp distribute
 		for(int i = 0; i<2; ++i)
