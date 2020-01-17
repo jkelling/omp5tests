@@ -383,18 +383,20 @@ namespace meta
 	}
 }
 
-template<int A>
+template<int A, int B>
 struct F
 {
-	void operator() (int& s, int a) const {s = 23;}
+	template<typename... Args>
+	void operator() (int* s, Args... a) const {*s = 23;}
 };
 
 constexpr int TEAMS = 1;
 constexpr int THREADS = 4;
 
-int main()
+template<typename ...Args>
+void devfn(Args&& ...args)
 {
-	F<2> f;
+	F<2, 3> f;
 #pragma omp target
 	{
 #pragma omp teams num_teams(TEAMS) thread_limit(THREADS)
@@ -405,10 +407,15 @@ int main()
 				#pragma omp parallel
 				{
 					int s = 0;
-					meta::apply([f](int& s, int a){f(s, a);}, std::make_tuple(std::ref(s), 2));
-					// printf("side effect %d\n", s);
+					meta::apply([f](int* s, Args ...args){f(s, args...);}, std::make_tuple(&s, args...));
+					printf("side effect %d\n", s);
 				}
 			}
 		}
 	}
+}
+
+int main()
+{
+	devfn(4,2);
 }
