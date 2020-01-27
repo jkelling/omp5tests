@@ -387,7 +387,7 @@ template<int A, int B>
 struct F
 {
 	template<typename... Args>
-	void operator() (int* s, Args... a) const {*s = 23;}
+	void operator() (Args... a) const {}
 };
 
 constexpr int TEAMS = 1;
