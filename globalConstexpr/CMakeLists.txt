@@ -1,0 +1,2 @@
+add_executable(globalConstexpr globalConstexpr.cpp)
+target_link_libraries(globalConstexpr)
