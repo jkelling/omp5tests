@@ -11,14 +11,14 @@ public:
 
 #ifndef TEST_TRIVIALCOPY
   T(const T& other) {}
-#endif
 
 #ifndef TEST_TRIVIALDESTRUCT
   ~T() {}
 #endif
+#endif
 
 private:
-  int a;
+  [[maybe_unused]] int a;
 };
 
 #ifdef TEST_TRIVIALCOPY
