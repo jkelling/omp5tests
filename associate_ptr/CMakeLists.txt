@@ -1,0 +1,2 @@
+add_executable(associate_ptr associate_ptr.cpp)
+target_link_libraries(associate_ptr)
