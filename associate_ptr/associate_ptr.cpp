@@ -14,7 +14,7 @@ bool testAssoc(int idev)
 	omp_target_associate_ptr(host, dev, N*sizeof(int), 0, idev);
 
 	int** pdev = &dev; // implicit mapping of dev yields nullptr on target (at least clang)
-#pragma omp target teams distribute parallel for device(idev) map(to:pdev)
+#pragma omp target teams distribute parallel for device(idev) map(to:pdev[0:1])
 	for(int a = 0; a < N; ++a)
 	{
 		(*pdev)[a] = VAL;
