@@ -34,7 +34,7 @@ void f()
 int main()
 {
 	//OK:
-	f<64>();
+	f<58>();
 
 	//[GPU Memory Error] Addr: 0x0 Reason: Page not present or supervisor privilege.:
 	// https://bugs.llvm.org/show_bug.cgi?id=50968
