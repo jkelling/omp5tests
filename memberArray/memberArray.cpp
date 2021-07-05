@@ -39,4 +39,8 @@ int main()
 	//[GPU Memory Error] Addr: 0x0 Reason: Page not present or supervisor privilege.:
 	// https://bugs.llvm.org/show_bug.cgi?id=50968
 	f<65>();
+
+	//[GPU Memory Error] Addr: 0x0 Reason: Page not present or supervisor privilege.:
+	// https://bugs.llvm.org/show_bug.cgi?id=50968
+	f<30<<10>();
 }
