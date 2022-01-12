@@ -3,6 +3,13 @@
 
 #include <omp.h>
 
+auto& sharedMem()
+{
+	static int local;
+#pragma omp allocate(local) allocator(omp_pteam_mem_alloc)
+	return local;
+}
+
 int main()
 {
 	int maxThreads = omp_get_max_threads();
@@ -17,21 +24,23 @@ int main()
 #pragma omp target data map(tofrom:aLocal,aTeam)
 #pragma omp target
 	{
-#pragma omp teams num_teams(numTeams) thread_limit(maxThreads)
+#pragma omp teams num_teams(numTeams) //thread_limit(maxThreads)
 		{
 #pragma omp distribute
 			for(int t = 0; t < omp_get_num_teams(); ++t)
 			{
 				int team = 0;
-#pragma omp parallel //num_threads(maxThreads)
+#pragma omp parallel num_threads(1024)
 				{
-					int local = 0;
-#pragma omp allocate(local) allocator(omp_pteam_mem_alloc)
+					int& local = sharedMem();
+					// int local = 0;
+					if(omp_get_thread_num() == 0)
+						local = 0;
 #pragma omp atomic update
 					local += t+1;
 #pragma omp atomic update
 					team += t+1;
-#pragma omp barrier
+#pragma omp barrier // nvptx sm_35 backend: "invalid instruction" when thread_limit(maxThreads) set at teams
 					// printf("TEAM %d, THREAD=%d, local=%d, team=%d\n"
 					// 	, (int)(omp_get_team_num()), (int)(omp_get_thread_num()), local, team);
 					if(omp_get_thread_num() == 0)
